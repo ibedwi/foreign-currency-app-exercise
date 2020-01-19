@@ -6,49 +6,49 @@ import Card from './index';
 
 export const cardProps = {
   currency_amount: 10000,
-  currency_to_name: 'Euro',
-  currency_to: 'EUR',
+  currencyTo_name: 'Euro',
+  currencyTo: 'EUR',
   currency_from: 'USD',
   rate: 1
 }
 
-storiesOf('Card', module)
+storiesOf('COMPONENT | Card', module)
   .add('default', () => <div className="w-full h-full flex flex-col justify-center items-center"> <Card /> </div>)
   .add('filled', () => <div className="w-full h-full flex flex-col justify-center items-center"> <Card { ...cardProps } /> </div>)
   .add('multiple', () => 
       <div className="w-full h-full flex flex-col justify-center items-center"> 
-        <Card currency_to={'EUR'} />
-        <Card currency_to={'BGN'} />
-        <Card currency_to={'NZD'} />
-        <Card currency_to={'ILS'} />
-        <Card currency_to={'RUB'} />
-        <Card currency_to={'CAD'} />
-        <Card currency_to={'USD'} />
-        <Card currency_to={'PHP'} />
-        <Card currency_to={'CHF'} />
-        <Card currency_to={'ZAR'} />
-        <Card currency_to={'AUD'} />
-        <Card currency_to={'JPY'} />
-        <Card currency_to={'TRY'} />
-        <Card currency_to={'HKD'} />
-        <Card currency_to={'MYR'} />
-        <Card currency_to={'THB'} />
-        <Card currency_to={'HRK'} />
-        <Card currency_to={'NOK'} />
-        <Card currency_to={'IDR'} />
-        <Card currency_to={'DKK'} />
-        <Card currency_to={'CZK'} />
-        <Card currency_to={'HUF'} />
-        <Card currency_to={'GBP'} />
-        <Card currency_to={'MXN'} />
-        <Card currency_to={'KRW'} />
-        <Card currency_to={'ISK'} />
-        <Card currency_to={'SGD'} />
-        <Card currency_to={'BRL'} />
-        <Card currency_to={'PLN'} />
-        <Card currency_to={'INR'} />
-        <Card currency_to={'RON'} />
-        <Card currency_to={'CNY'} />
-        <Card currency_to={'SEK'} />
+        <Card currencyTo={'EUR'} />
+        <Card currencyTo={'BGN'} />
+        <Card currencyTo={'NZD'} />
+        <Card currencyTo={'ILS'} />
+        <Card currencyTo={'RUB'} />
+        <Card currencyTo={'CAD'} />
+        <Card currencyTo={'USD'} />
+        <Card currencyTo={'PHP'} />
+        <Card currencyTo={'CHF'} />
+        <Card currencyTo={'ZAR'} />
+        <Card currencyTo={'AUD'} />
+        <Card currencyTo={'JPY'} />
+        <Card currencyTo={'TRY'} />
+        <Card currencyTo={'HKD'} />
+        <Card currencyTo={'MYR'} />
+        <Card currencyTo={'THB'} />
+        <Card currencyTo={'HRK'} />
+        <Card currencyTo={'NOK'} />
+        <Card currencyTo={'IDR'} />
+        <Card currencyTo={'DKK'} />
+        <Card currencyTo={'CZK'} />
+        <Card currencyTo={'HUF'} />
+        <Card currencyTo={'GBP'} />
+        <Card currencyTo={'MXN'} />
+        <Card currencyTo={'KRW'} />
+        <Card currencyTo={'ISK'} />
+        <Card currencyTo={'SGD'} />
+        <Card currencyTo={'BRL'} />
+        <Card currencyTo={'PLN'} />
+        <Card currencyTo={'INR'} />
+        <Card currencyTo={'RON'} />
+        <Card currencyTo={'CNY'} />
+        <Card currencyTo={'SEK'} />
       </div>
     )

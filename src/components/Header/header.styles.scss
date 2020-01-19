@@ -1,0 +1,52 @@
+.nav-custom {
+  background: #f53d2d;
+  background: -webkit-gradient(linear,left top,left bottom,from(#f53d2d),to(#f63));
+  background: linear-gradient(-180deg,#f53d2d,#f63);
+  padding: 10px 0;
+  color: #fff;
+}
+
+.currency-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.currency-code {
+  font-size: 2rem;
+  font-weight: bold;
+  flex: 1;
+}
+
+.currency-amount {
+  font-size: 2rem;
+  font-weight: bold;
+  flex: 1;
+}
+
+.currency-amount__inner {
+  flex: 1;
+  text-align: right;
+}
+
+.input-amount {
+  flex: 1;
+  margin: 0 !important;
+}
+
+.btn-edit {
+  margin-left: 10px;
+}
+
+.btn-edit__icon {
+  transition-duration: 500ms;
+  cursor: pointer;
+}
+
+.btn-edit__icon:hover {
+  transition-duration: 500ms;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.28);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.28);
+  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.28);
+}
