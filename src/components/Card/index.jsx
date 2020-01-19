@@ -17,7 +17,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 const Card = ({ currencyTo, currencyFrom, amount, rate, onDeleteHandler }) => {
   return (
     <div 
-      className="shadow-md md:w-2/4 sm:w-full lg:w-2/5 my-3 flex rounded-lg"
+      className="shadow-md md:w-2/4 sm:w-full lg:w-2/5 my-3 flex rounded-lg bg-white"
     >
       {/* DATA */}
       <div className="data-container">
@@ -49,7 +49,7 @@ const Card = ({ currencyTo, currencyFrom, amount, rate, onDeleteHandler }) => {
       {/* DATA - END */}
       {/* BUTTON DELETE */}
       <div 
-        className="button-container"
+        className="button-container rounded-r-lg"
         onClick={ () => onDeleteHandler( currencyTo ) }
       >
         <FontAwesomeIcon icon={faTrash} className="btn-delete" />

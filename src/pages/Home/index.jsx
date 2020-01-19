@@ -4,7 +4,7 @@ import _ from 'lodash';
 import Card from '../../components/Card';
 import Header from '../../components/Header';
 import exchangeActions from '../../models/actions';
-// import Input from '../../components/input/input.component';
+import Input from '../../components/Input';
 
 class Home extends React.Component {
   
@@ -21,7 +21,7 @@ class Home extends React.Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     exchangeActions.fetchLatest('USD').then( res => {
       console.log('result', res);
       this.setState({
@@ -49,15 +49,24 @@ class Home extends React.Component {
     })
   }
 
+  /**
+   * Handle delete currency card
+   * @param {string} id - Currency card's id
+   */
   onDeleteHandler = ( id ) => {
-    console.log('onDeleteHandler', id);
+    // Create a copy of current currencies list
     let copiedList = [ ...this.state.selectedCurrency ];
-    let newList = _.remove( copiedList, arr => arr != id )
-    this.setState({
-      selectedCurrency: newList
-    })
+
+    // Remove currency with selected id from the copied list
+    let newList = _.remove( copiedList, arr => arr !== id );
+
+    // Use the newList as current selectedCurrency
+    this.setState({ selectedCurrency: newList })
   }
 
+  /**
+   * 
+   */
   addCurrencyHandler = ( id ) => {
     let newSelectedCurrency =  [ ...this.state.selectedCurrency ];
     newSelectedCurrency.push(id);
@@ -68,10 +77,10 @@ class Home extends React.Component {
     let allRatesCode = Object.getOwnPropertyNames(this.state.rates)
     let ratesData = this.state.rates;
     let selectedCurrency = this.state.selectedCurrency;
-
     let availableRatesCode = _.filter( allRatesCode, r => _.every( selectedCurrency, selected => r != selected ))
+
     return (
-      <div>
+      <div className="flex flex-col h-screen justify-between w-full">
         <Header
           currency_code={ this.state.baseCurrency }
           amount={ this.state.baseCurrencyAmount }
@@ -79,26 +88,29 @@ class Home extends React.Component {
           toggleEditing={ this.toggleEditing }
           editing={ this.state.editingAmount }
         />
-        <div className="container"> 
+        <div className="bg-gray-200 w-full flex flex-col flex-1 items-center overflow-auto pt-2"> 
         {
           _.map( selectedCurrency, r => {
             return (
               <Card 
                 key={ r } 
-                currency_to={ r }
-                currency_from={ this.state.baseCurrency }
+                currencyTo={ r }
+                currencyFrom={ this.state.baseCurrency }
                 rate={ ratesData[r] }
-                currency_amount={ this.state.baseCurrencyAmount * ratesData[r] }
+                amount={ this.state.baseCurrencyAmount * ratesData[r] }
                 onDeleteHandler={ this.onDeleteHandler.bind(this) }
               />
             )
           })
         }
-        {/* <Input 
+        </div>
+        <div className="py-4 bg-gray-200">
+        <Input
           currencyList={availableRatesCode} 
           addCurrencyHandler={ this.addCurrencyHandler.bind(this) }
-        /> */}
+        />
         </div>
+        
       </div>
     )
   }
