@@ -3,9 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { PrivateRoute, PublicRoute } from '../helpers/router.helper';
 
-import ExampleClassPage from '../pages/ExamplePageClass/Example.pages';
-import ExamplePage from '../pages/ExamplePages/Example.pages';
-
+import HomePage from '../pages/Home'
 
 const Routes = () => {
   return (
@@ -14,12 +12,7 @@ const Routes = () => {
         <PublicRoute
           path='/'
           exact
-          component={ExamplePage}
-        />
-        <PublicRoute
-          path='/class-page'
-          exact
-          component={ExampleClassPage}
+          component={HomePage}
         />
       </Switch>
     </BrowserRouter>

@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Card default 1`] = `
+<div>
+  <div
+    className="currency-amount"
+  >
+    <div
+      className="currency-amount__code"
+    >
+      IDR
+    </div>
+    <div
+      className="currency-amount__converted-amount"
+    >
+      123000
+    </div>
+  </div>
+  <div
+    className="currency-name"
+  >
+    <div
+      className="currency-name__code"
+    >
+      IDR
+       - 
+    </div>
+    <div
+      className="currency-name__name"
+    >
+      Indonesia Rupiah
+    </div>
+  </div>
+  <div
+    className="rate"
+  >
+    <div
+      className="rate__amount"
+    >
+      1 
+      USD
+       = 
+      IDR
+       
+      14000
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Card filled 1`] = `
+<div>
+  <div
+    className="currency-amount"
+  >
+    <div
+      className="currency-amount__code"
+    >
+      EUR
+    </div>
+    <div
+      className="currency-amount__converted-amount"
+    >
+      10000
+    </div>
+  </div>
+  <div
+    className="currency-name"
+  >
+    <div
+      className="currency-name__code"
+    >
+      EUR
+       - 
+    </div>
+    <div
+      className="currency-name__name"
+    >
+      Euro
+    </div>
+  </div>
+  <div
+    className="rate"
+  >
+    <div
+      className="rate__amount"
+    >
+      1 
+      USD
+       = 
+      EUR
+       
+      1
+    </div>
+  </div>
+</div>
+`;
