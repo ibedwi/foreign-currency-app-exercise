@@ -4,16 +4,10 @@ import _ from 'lodash';
 import getCurrencyName from '../../utils/getCurrencyName';
 import PropTypes from 'prop-types';
 
-const propTypes = {
-  currencyList: PropTypes.object,
-  addCurrencyHandler: PropTypes.func
-}
-
-const defaultProps = {
-  currencyList: {},
-  addCurrencyHandler: () => console.log('default addCurrencyHandler')
-}
-
+/**
+ * Component showing available currencies list and adding the currency
+ * to the listed currencies 
+ */
 class Input extends React.Component {
   
   constructor(props) {
@@ -26,16 +20,26 @@ class Input extends React.Component {
     }
   }
 
+  /**
+   * Toggle show currency list
+   */
   toggleShowCurrencyList = () => {
     this.setState({ showCurrencyList: !this.state.showCurrencyList })
   }
 
+  /**
+   * Handle change query for filtering the available coin list
+   * @param {string} query - search query
+   */
   onChangeQuery = (query) => {
     let { currencyList } = this.props;
+
+    // Create new list from filtered currencyList
     let filteredList = _.filter(currencyList, c => _.includes(c, query));
 
     this.setState({ query, filteredList })
   }
+
   render() {
     let currencies = {...this.props.currencyList};
     let { query, filteredList } = this.state;
@@ -47,6 +51,7 @@ class Input extends React.Component {
       >
         {
           query ?
+          // Show filtered list
           _.map( filteredList, c => {
             return (
               <span 
@@ -59,6 +64,7 @@ class Input extends React.Component {
             )
           }) 
           :
+          // Show all available currencies
           _.map( currencies, c => {
             return (
               <span 
@@ -83,9 +89,7 @@ class Input extends React.Component {
             :
           null
         }
-        <div 
-          className="input-group input-group--add-currency"
-        >
+        <div className="input-group input-group--add-currency">
           <input 
             type="text" 
             className="form-control" 
@@ -112,7 +116,14 @@ class Input extends React.Component {
   }
 }
 
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
+Input.propTypes = {
+  currencyList: PropTypes.object,
+  addCurrencyHandler: PropTypes.func
+}
+
+Input.defaultProps = {
+  currencyList: {},
+  addCurrencyHandler: () => console.log('default addCurrencyHandler')
+}
 
 export default Input;

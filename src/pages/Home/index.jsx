@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Card from '../../components/Card';
 import Header from '../../components/Header';
@@ -23,7 +22,6 @@ class Home extends React.Component {
 
   componentDidMount = async () => {
     exchangeActions.fetchLatest('USD').then( res => {
-      console.log('result', res);
       this.setState({
         rates: res.data.rates
       })
@@ -32,6 +30,9 @@ class Home extends React.Component {
     })
   }
 
+  /**
+   * Validate amount input
+   */
   onInputChange = ( e ) => {
     const amount = e.target.value
     const validator = /^(\d+(\.\d*)*?)$/;
@@ -43,6 +44,9 @@ class Home extends React.Component {
     }
   }
 
+  /**
+   * Toggle edit dollar amount
+   */
   toggleEditing = () => {
     this.setState({
       editingAmount: !this.state.editingAmount
@@ -65,7 +69,8 @@ class Home extends React.Component {
   }
 
   /**
-   * 
+   * Add currency card
+   * @param {string} id - Currency card's id
    */
   addCurrencyHandler = ( id ) => {
     let newSelectedCurrency =  [ ...this.state.selectedCurrency ];
@@ -89,26 +94,26 @@ class Home extends React.Component {
           editing={ this.state.editingAmount }
         />
         <div className="bg-gray-200 w-full flex flex-col flex-1 items-center overflow-auto pt-2"> 
-        {
-          _.map( selectedCurrency, r => {
-            return (
-              <Card 
-                key={ r } 
-                currencyTo={ r }
-                currencyFrom={ this.state.baseCurrency }
-                rate={ ratesData[r] }
-                amount={ this.state.baseCurrencyAmount * ratesData[r] }
-                onDeleteHandler={ this.onDeleteHandler.bind(this) }
-              />
-            )
-          })
-        }
+          {
+            _.map( selectedCurrency, r => {
+              return (
+                <Card 
+                  key={ r } 
+                  currencyTo={ r }
+                  currencyFrom={ this.state.baseCurrency }
+                  rate={ ratesData[r] }
+                  amount={ this.state.baseCurrencyAmount * ratesData[r] }
+                  onDeleteHandler={ this.onDeleteHandler.bind(this) }
+                />
+              )
+            })
+          }
         </div>
         <div className="py-4 bg-gray-200">
-        <Input
-          currencyList={availableRatesCode} 
-          addCurrencyHandler={ this.addCurrencyHandler.bind(this) }
-        />
+          <Input
+            currencyList={availableRatesCode} 
+            addCurrencyHandler={ this.addCurrencyHandler.bind(this) }
+          />
         </div>
         
       </div>
