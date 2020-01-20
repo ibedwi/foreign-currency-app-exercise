@@ -14,7 +14,7 @@ const Header = ({ currencyCode, currencyName, amount, onChangeAmount }) => {
   const toggleEditing = () => setIsEditing(!isEditing);
 
   return (
-    <nav className="nav justify-content-center nav-custom ">
+    <nav className="nav justify-content-center nav-custom">
     <div className="header col-sm-12 col-md-8 col-lg-5">
       <div className="currency-name-full">
         <p>{ currencyCode } - { currencyName }</p>

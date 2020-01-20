@@ -1,7 +1,19 @@
 import React from 'react';
 import './input.styles.scss'
 import _ from 'lodash';
-import getCurrencyName from '../../utils/getCurrencyName'
+import getCurrencyName from '../../utils/getCurrencyName';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  currencyList: PropTypes.object,
+  addCurrencyHandler: PropTypes.func
+}
+
+const defaultProps = {
+  currencyList: {},
+  addCurrencyHandler: () => console.log('default addCurrencyHandler')
+}
+
 class Input extends React.Component {
   
   constructor(props) {
@@ -29,12 +41,16 @@ class Input extends React.Component {
     let { query, filteredList } = this.state;
 
     const renderCurrenciesList = (
-      <div className="currencies-list h-48 overflow-auto">
+      <div 
+        aria-label="currencies-list"
+        className="currencies-list h-48 overflow-auto"
+      >
         {
           query ?
           _.map( filteredList, c => {
             return (
               <span 
+                key={c}
                 className="dropdown-item currencies-list__item cursor-pointer hover:bg-orange-500" 
                 onClick={ () => {this.props.addCurrencyHandler(c); this.toggleShowCurrencyList();} }
               >
@@ -46,6 +62,7 @@ class Input extends React.Component {
           _.map( currencies, c => {
             return (
               <span 
+                key={c}
                 className="dropdown-item currencies-list__item cursor-pointer hover:bg-orange-500" 
                 onClick={ () => {this.props.addCurrencyHandler(c); this.toggleShowCurrencyList();} }
               >
@@ -59,7 +76,7 @@ class Input extends React.Component {
 
     return (
 
-      <div className="sm:w-4/5 md:w-3/4 lg:w-3/4 ml-auto mr-auto">
+      <div className="card-input sm:w-4/5 md:w-3/4 lg:w-3/4 ml-auto mr-auto">
         {
           this.state.showCurrencyList ?
           renderCurrenciesList
@@ -72,14 +89,14 @@ class Input extends React.Component {
           <input 
             type="text" 
             className="form-control" 
-            aria-label="Sizing example input" 
-            aria-describedby="inputGroup-sizing-lg" 
+            aria-label="currencies" 
             placeholder="Add more Currencies"
             onFocus={ () => this.toggleShowCurrencyList() }
             onChange={ (event) => this.onChangeQuery(event.target.value) }
           />
           <div className="input-group-append">
             <button 
+              aria-label="toggle-currency-list"
               className="btn btn-secondary" 
               type="button" 
               id="button-addon2"
@@ -94,5 +111,8 @@ class Input extends React.Component {
     )
   }
 }
+
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
 export default Input;
