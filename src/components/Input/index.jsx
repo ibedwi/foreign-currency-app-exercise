@@ -8,7 +8,9 @@ class Input extends React.Component {
     super(props);
 
     this.state = {
-      showCurrencyList: false
+      showCurrencyList: false,
+      query: '',
+      filteredList: []
     }
   }
 
@@ -16,12 +18,31 @@ class Input extends React.Component {
     this.setState({ showCurrencyList: !this.state.showCurrencyList })
   }
 
+  onChangeQuery = (query) => {
+    let { currencyList } = this.props;
+    let filteredList = _.filter(currencyList, c => _.includes(c, query));
+
+    this.setState({ query, filteredList })
+  }
   render() {
     let currencies = {...this.props.currencyList};
-    
+    let { query, filteredList } = this.state;
+
     const renderCurrenciesList = (
       <div className="currencies-list h-48 overflow-auto">
         {
+          query ?
+          _.map( filteredList, c => {
+            return (
+              <span 
+                className="dropdown-item currencies-list__item cursor-pointer hover:bg-orange-500" 
+                onClick={ () => {this.props.addCurrencyHandler(c); this.toggleShowCurrencyList();} }
+              >
+                { c } - { getCurrencyName(c) }
+              </span>
+            )
+          }) 
+          :
           _.map( currencies, c => {
             return (
               <span 
@@ -35,6 +56,7 @@ class Input extends React.Component {
         }
       </div>
     )
+
     return (
 
       <div className="sm:w-4/5 md:w-3/4 lg:w-3/4 ml-auto mr-auto">
@@ -54,6 +76,7 @@ class Input extends React.Component {
             aria-describedby="inputGroup-sizing-lg" 
             placeholder="Add more Currencies"
             onFocus={ () => this.toggleShowCurrencyList() }
+            onChange={ (event) => this.onChangeQuery(event.target.value) }
           />
           <div className="input-group-append">
             <button 
