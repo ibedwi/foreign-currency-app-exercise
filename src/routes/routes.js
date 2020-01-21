@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { PrivateRoute, PublicRoute } from '../helpers/router.helper';
+import { PrivateRoute, PublicRoute } from '../helpers/router.helper.js';
 
 import HomePage from '../pages/Home'
 
